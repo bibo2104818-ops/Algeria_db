@@ -1,83 +1,235 @@
-Algerian Personalities Database Management System
-Ecole Nationale Supérieure en Cybersécurité (ENSC) — Advanced Data Structures Project
-An administrative, high-performance C-based desktop application designed to archive, index, and query the profiles of Algerian national heroes. This system couples decoupled core data structures with an asymmetric, localized graphical interface powered by the GTK+ 3.0 object framework.
 
-Technical Architecture & Design Implementation
-Asymmetric Translation & RTL Layout Redirection
-The application isolates system components from translation strings via a multi-dimensional array lookup macro mapping token identifiers against active language offsets.
+# Algeria_db
 
-C
-#define _(key) translations[current_language][key]
-When toggled to LANG_AR, the translation engine triggers runtime layout direction updates using the gtk_widget_set_direction interface. This forces an immediate rewrite of the GTK widget tree properties, reconfiguring structural entry box widgets and Pango layouts to use Right-to-Left (RTL) text flows without state drops or binary restarts.
+A C-based database implementation featuring data structures, binary tree operations, and GUI interface for managing Algerian personalities database.
 
-Signal Inversion & Event Filtering
-Text-entry boundaries implement proactive validation mechanisms to block malformed inputs. By connecting custom handlers to the insert-text signal on GtkEditable widgets, keystroke events are filtered before standard internal buffer allocation occurs:
+## Overview
 
-C
-g_signal_connect(G_OBJECT(ent_dob), "insert-text", G_CALLBACK(on_date_entry_insert_text), NULL);
-If an input violates the timestamp signature [0-9/], the handler suppresses the character injection by calling g_signal_stop_emission_by_name, protecting memory blocks from parsing crashes.
+Algeria_db is a project that implements a custom database system in C with support for advanced data structures, tree-based indexing, and a graphical user interface. It provides functionality for storing, retrieving, and managing records related to Algerian personalities.
 
-Automated UI Autocomplete Hooks
-Live query hinting leverages the native GtkEntryCompletion module coupled to a dedicated GtkListStore model. When the local memory array layout updates via entry updates or text file deserialization, update_search_completion() runs a clean buffer cycle:
+## Project Structure
 
-Instantiates a temporary GtkListStore matrix populated with cache pointers.
+```
+Algeria_db/
+├── main.c                    # Main entry point
+├── gui.c & gui.h            # Graphical User Interface implementation
+├── list.c & list.h          # Linked list data structure
+├── binary_tree.c & binary_tree.h  # Binary search tree implementation
+├── recursion.c & recursion.h  # Recursive utility functions
+├── stack.c & stack.h        # Stack data structure
+├── types.h                  # Type definitions and structures
+├── dark_style.css           # UI styling
+├── style.css                # Additional styling
+├── algerian_personalities.txt  # Data file with personalities database
+└── LICENSE                  # MIT License
+```
 
-Binds the data table to the search controller using text-column indices.
+## Key Components
 
-Triggers inline match lookups and automated drop-down popups directly against user string prefix sequences.
+### Core Data Structures
 
-Recursive Memory Mapping & Visual BST Introspection
-To inspect live node configurations, the system implements an interactive GtkTreeView element tied to an underlying GtkTreeStore model topology. The dashboard utilizes a tailored pointer-traversal routine to map binary node offsets into visual graphical representations:
+- **Binary Tree** (`binary_tree.c/h`): BST implementation for efficient searching and indexing
+- **Linked List** (`list.c/h`): Dynamic list structure for sequential data storage
+- **Stack** (`stack.c/h`): LIFO data structure for stack-based operations
+- **Recursion** (`recursion.c/h`): Recursive algorithms and utility functions
 
-C
-void populate_gtk_tree_store(TTree *node, GtkTreeIter *parent);
-The tree explorer steps through active memory branches using standard left/right leaf recursive iterations. Each visited structural pointer generates a child iteration token (GtkTreeIter) nested inside its parent tree node layout. This enables live visualization of leaf balances, node structures, and allocation depth properties directly from active heap space.
+### User Interface
 
-Underlying Data Structures Architecture
-The execution layer structures profiles concurrently across three distinct abstract data allocation formats to balance algorithmic lookup efficiency, operational safety, and historical serialization capabilities:
+- **GUI Module** (`gui.c/h`): Graphical interface for user interaction
+- **Styling** (`style.css`, `dark_style.css`): Theme and appearance customization
 
-Linked List (TList): Serves as the primary data repository for individual records, maintaining sequential metadata definitions and lifespan bounds.
+### Data Management
 
-Stack Grid (TStack): Tracks biography strings and change tracking records, using a Last-In, First-Out (LIFO) alignment pattern to preserve historical logs.
+- **Types** (`types.h`): Central definitions for all data structures and types
+- **Data File** (`algerian_personalities.txt`): Database of Algerian personalities
 
-Binary Search Tree (TTree): Optimizes lookup performance by organizing personality names alphabetically. By maintaining a structured tree topology, search complexities avoid linear degradation O(n) and achieve logarithmic performance guarantees O(logn).
+## Build System
 
-File Input Parsing Specifications
-The filesystem module reads unstructured raw flat files (.txt) sequentially using a semicolon-delimited token parser. Extracted string tokens are sanitized of carriage returns (\r\n) and run through a validation algorithm before data structures accept them:
+The project uses **CMake** for multi-platform compilation. A `CMakeLists.txt` configuration file enables building on Windows, macOS, and Linux.
 
-Validates month ranges against a standard calendar matrix [1-12].
+### Building the Project
 
-Validates daily upper bounds against month configurations.
+```bash
+# Create build directory
+mkdir build
+cd build
 
-Handles leap year constraints on February values dynamically.
+# Configure and build
+cmake ..
+cmake --build .
 
-Parsing Signature Matrix
-Plaintext
-Name;Date_of_Birth;Date_of_Death;Detailed_Biography
-Raw Buffer Mapping Vector Example
-Plaintext
-Larbi Ben M'hidi;26/01/1923;04/03/1957;Prominent FLN strategist and member of the CRUA who directed the autonomous zone during the Battle of Algiers.
-Djamila Bouhired;04/06/1935;;Nationalist militant whose arrest and trial galvanized international public opinion.
-Note: For living personalities, the structural death boundary must remain completely empty between the specified semicolon delimiters (;;) to notify the parser to assign a present active layout status pointer.
+# Run the executable
+./Algeria_db
+```
 
-Compilation & Subsystem Deployment Guide
-Environment Configuration
-Ensure your build station (Ubuntu or Zorin OS development environments) has the GNU Compiler Collection (GCC) toolchain and the proper GTK+ 3.0 development shared library objects installed:
+### Build Requirements
 
-Bash
-sudo apt update
-sudo apt install build-essential libgtk-3-dev
-Technical Build Command
-Compile all decoupled code segments concurrently while passing flags for GTK configuration and enabling the GUI preprocessor mode switch:
+- C compiler (GCC, Clang, or MSVC)
+- CMake 3.10 or higher
+- Standard C libraries
 
-Bash
-gcc -DGUI_MODE main.c gui.c stack.c recursion.c list.c binary_tree.c -o algeria_history_app `pkg-config --cflags --libs gtk+-3.0`
-Launching the Application
-Execute the resulting binary target file from your terminal layout workspace:
+## Features
 
-Bash
-./algeria_history_app
-Academic Verification
-Developed as an Advanced Data Structures (ALDDS) semester project at the National School of Cybersecurity (ENSC), Algiers, Algeria. 🇩🇿
+- **Binary Search Tree Operations**: Insert, search, delete, and traverse records
+- **Linked List Management**: Dynamic data collection and manipulation
+- **Stack-based Algorithms**: Support for recursive operations
+- **GUI Interface**: User-friendly interaction with the database
+- **Data Persistence**: Load and manage personality records from file
+- **Recursive Algorithms**: Advanced problem-solving capabilities
 
-ENSC Node Safety Status: COMPILED & LOCKED SECURE
+## Language Composition
+
+- **C**: 94.0% (Core implementation)
+- **CSS**: 6.0% (Styling)
+
+## Usage
+
+### Running the Application
+
+After building, execute the compiled binary:
+
+```bash
+./Algeria_db
+```
+
+The GUI interface will open, allowing you to:
+- Browse Algerian personalities
+- Search records using the binary tree index
+- Perform CRUD operations (Create, Read, Update, Delete)
+- Navigate through the database
+
+### Example Operations
+
+```c
+// Binary Tree Search
+Node* result = search_tree(root, personality_id);
+
+// Insert into Linked List
+insert_list(list, new_personality);
+
+// Stack Operations
+push(stack, personality);
+pop(stack);
+```
+
+## Data Format
+
+The `algerian_personalities.txt` file contains records with the following structure:
+```
+name | field | contribution | birth_year | region
+```
+
+## Documentation
+
+### Header Files
+
+- **types.h**: Contains all structure definitions and type declarations
+- **gui.h**: GUI function prototypes and constants
+- **binary_tree.h**: BST operations interface
+- **list.h**: Linked list operations interface
+- **stack.h**: Stack operations interface
+- **recursion.h**: Recursive function declarations
+
+### Code Organization
+
+Each `.c` file contains implementation details with clear function comments and logical organization. The modular design allows for easy maintenance and extension.
+
+## License
+
+This project is licensed under the **MIT License** - see the LICENSE file for details.
+
+## Repository Information
+
+- **Repository**: [bibo2104818-ops/Algeria_db](https://github.com/bibo2104818-ops/Algeria_db)
+- **Access**: Public
+- **Language**: C (94.0%), CSS (6.0%)
+- **Last Updated**: Recent commits
+
+## Contributing
+
+To contribute to this project:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/improvement`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/improvement`)
+5. Submit a Pull Request
+
+## Getting Started
+
+### Prerequisites
+
+- GCC/Clang compiler
+- CMake build system
+- Basic understanding of data structures and C programming
+
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/bibo2104818-ops/Algeria_db.git
+cd Algeria_db
+
+# Build
+mkdir build && cd build
+cmake ..
+cmake --build .
+
+# Run
+./Algeria_db
+```
+
+## Architecture Overview
+
+```
+┌─────────────────────────────────────┐
+│      GUI Interface (gui.c)          │
+├─────────────────────────────────────┤
+│  Binary Tree │ Linked List │ Stack  │
+│  (binary_tree.c) (list.c) (stack.c) │
+├─────────────────────────────────────┤
+│  Core Types & Recursion             │
+│  (types.h, recursion.c)             │
+├─────────────────────────────────────┤
+│  Data Layer (algerian_personalities) │
+└─────────────────────────────────────┘
+```
+
+## Performance Considerations
+
+- **Binary Tree**: O(log n) average search, O(n) worst case
+- **Linked List**: O(n) search, O(1) insertion at head
+- **Stack**: O(1) push/pop operations
+
+## Troubleshooting
+
+### Build Issues
+
+If you encounter build errors:
+1. Ensure CMake is properly installed: `cmake --version`
+2. Verify C compiler is available: `gcc --version` or `clang --version`
+3. Check that all source files are in the correct directory
+
+### Runtime Issues
+
+- Ensure `algerian_personalities.txt` exists in the working directory
+- Verify file permissions for data file access
+- Check console output for specific error messages
+
+## Future Enhancements
+
+- Database persistence to file/SQLite
+- Search optimization with indexing
+- Extended GUI features
+- Network capabilities
+- Unit test suite
+
+## Contact & Support
+
+For issues, questions, or contributions, please visit the [GitHub repository](https://github.com/bibo2104818-ops/Algeria_db).
+
+---
+
+**Version**: 1.0  
+**Last Updated**: 2026  
+**Status**: Active Development
