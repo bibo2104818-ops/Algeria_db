@@ -1,0 +1,117 @@
+/* ==========================================================================
+   ALGERIAN NATIONAL HIGH-CONTRAST LIGHT THEME (WHITE, GREEN, RED)
+   ========================================================================== */
+
+/* Main Window Canvas Window */
+window {
+    background-color: #ffffff;
+}
+
+/* Sidebar Menu Box - Sharp Separation from Content Workspace */
+.sidebar {
+    background-color: #006633; /* Pure Algerian Deep Green */
+    border-right: 4px solid #d2143a; /* Rich Crimson Red Separation Border Spine Line */
+    padding: 15px;
+}
+
+#sidebar-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+}
+
+/* Sidebar Navigation Stack Menu Items */
+stacksidebar list {
+    background-color: transparent;
+}
+
+stacksidebar row {
+    padding: 10px 15px;
+    color: #e6f7ed;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+stacksidebar row:selected {
+    background-color: #ffffff;
+    color: #006633; /* Inverted contrast on selection */
+}
+
+stacksidebar row:hover:not(:selected) {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Dashboard Presentation Details Card Display Layout Container */
+.card-view {
+    background-color: #f9fbf9; /* Ice clean white canvas base */
+    border: 1px solid #e1e8e1;
+    border-radius: 8px;
+    padding: 25px;
+}
+
+#details-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #006633; /* Green prominent title geometry */
+    letter-spacing: -0.5px;
+}
+
+#details-subtitle {
+    font-size: 12px;
+    font-weight: 700;
+    color: #d2143a; /* Red Alert Metadata Pill Tag Accent */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 4px;
+    margin-bottom: 15px;
+}
+
+#details-narrative {
+    font-size: 15px;
+    font-family: "Liberation Serif", "Georgia", serif;
+    color: #1a251f; /* Crisp slate-obsidian text output */
+    line-height: 1.8;
+    font-style: italic;
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 6px;
+    border-left: 5px solid #006633; /* Deep national green border highlight */
+    border-right: 1px solid #e2e8e2;
+    border-top: 1px solid #e2e8e2;
+    border-bottom: 1px solid #e2e8e2;
+}
+
+/* Buttons Engine Layout Mapping Controls */
+button.btn-primary {
+    background-color: #006633;
+    color: #ffffff;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 6px 16px;
+}
+button.btn-primary:hover {
+    background-color: #008040;
+}
+
+button.btn-success {
+    background-color: #006633;
+    color: white;
+}
+
+button.btn-danger {
+    background-color: #d2143a;
+    color: white;
+}
+treeview {
+    padding: 10px;
+    font-family: "Liberation Mono", monospace; /* Clean technical font mapping for internal tree look */
+    font-size: 14px;
+}
+
+treeview row {
+    padding: 6px;
+}

@@ -1,0 +1,130 @@
+/* ==========================================================================
+   SAHARA DESERT NIGHT SYSTEM DARK THEME (OBSIDIAN & GOLDEN SAND)
+   ========================================================================== */
+
+/* Dark Desert Void Background Canvas */
+window {
+    background-color: #0d1117; /* Deep midnight void color */
+}
+
+/* Sidebar Menu Box - Golden Dune Separation Spines */
+.sidebar {
+    background-color: #161b22; /* Matte charcoal slate block */
+    border-right: 4px solid #c99f4a; /* Golden Sand Separation Boundary Border */
+    padding: 15px;
+}
+
+#sidebar-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #c99f4a; /* Glowing gold identifier header */
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(201, 159, 74, 0.2);
+    padding-bottom: 10px;
+}
+
+/* Sidebar Navigation Items */
+stacksidebar list {
+    background-color: transparent;
+}
+
+stacksidebar row {
+    padding: 10px 15px;
+    color: #8b949e;
+    font-weight: 600;
+    border-radius: 4px;
+}
+
+stacksidebar row:selected {
+    background-color: #c99f4a; /* Golden highlight fill on active element */
+    color: #0d1117;
+}
+
+stacksidebar row:hover:not(:selected) {
+    background-color: rgba(201, 159, 74, 0.1);
+    color: #ffffff;
+}
+
+/* Main Application Workspace Input Boxes */
+entry {
+    background-color: #161b22;
+    color: #ffffff;
+    border: 1px solid #30363d;
+    border-radius: 4px;
+    padding: 6px;
+}
+entry:focus {
+    border-color: #c99f4a; /* Golden halo on text entry focus */
+}
+
+/* Dashboard Presentation Details Card Display Panel */
+.card-view {
+    background-color: #161b22; /* Nested slate block card container */
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 25px;
+}
+
+#details-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffffff; /* Crisp glowing crystal text output */
+    letter-spacing: -0.5px;
+}
+
+#details-subtitle {
+    font-size: 12px;
+    font-weight: 700;
+    color: #c99f4a; /* Warm Golden Sand Subtitle Tag Profile Indicator */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 4px;
+    margin-bottom: 15px;
+}
+
+#details-narrative {
+    font-size: 15px;
+    font-family: "Liberation Serif", "Georgia", serif;
+    color: #e6edf3;
+    line-height: 1.8;
+    font-style: italic;
+    background-color: #0d1117; /* Dark oasis inner well well container */
+    padding: 24px;
+    border-radius: 6px;
+    border-left: 5px solid #c99f4a; /* Rich golden desert signature spine border highlight */
+    border-right: 1px solid #21262d;
+    border-top: 1px solid #21262d;
+    border-bottom: 1px solid #21262d;
+}
+
+/* Buttons Controls Layout Mapping */
+button.btn-primary {
+    background-color: #c99f4a;
+    color: #0d1117;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 6px 16px;
+    border: none;
+}
+button.btn-primary:hover {
+    background-color: #e0b65c;
+}
+
+button.btn-success {
+    background-color: #238636;
+    color: white;
+}
+
+button.btn-danger {
+    background-color: #da3633;
+    color: white;
+}
+treeview {
+    padding: 10px;
+    font-family: "Liberation Mono", monospace; /* Clean technical font mapping for internal tree look */
+    font-size: 14px;
+}
+
+treeview row {
+    padding: 6px;
+}
