@@ -467,7 +467,7 @@ void displayList(TList *head) {
     }
 }
 
-displayQueue(TQueue *q) {
+void displayQueue(TQueue *q) {
     if (!q || !q->front) { printf("  (empty)\n"); return; }
     TList *cur = q->front;
     int i = 1;
