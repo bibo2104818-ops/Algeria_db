@@ -1,0 +1,9 @@
+cat <<EOF > .gitignore
+# Ignore the compiled executable application
+algeria_history_app
+
+# Ignore any temporary object or crash files
+*.o
+*.out
+/tmp/
+EOF
